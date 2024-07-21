@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "603223747782",
+    "project_id": "pazy-887b2",
+    "storage_bucket": "pazy-887b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603223747782:android:2490e6c630fd20ad0e7bc7",
+        "android_client_info": {
+          "package_name": "com.example.pazy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrA1FAD1ngynK15TBNBo0Jo_v1A0ITtaA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
