@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:pazy/Model/Firebase/image_view_log.dart';
-import 'package:pazy/Model/logs_data.dart';
-import 'package:pazy/View/log_tabs.dart';
 import 'package:pazy/View/top_tab_bar.dart';
 
 class Logs extends StatelessWidget {
@@ -14,7 +9,7 @@ class Logs extends StatelessWidget {
    
     
 
-    return Scaffold(
+    return const Scaffold(
 
       body: TopTabBar()
           
