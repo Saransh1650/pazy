@@ -1,16 +1,17 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pazy/Model/image_getter.dart';
 import 'package:pazy/Model/image_selector.dart';
 import 'package:pazy/View/expanded_fab.dart';
 import 'package:pazy/View/file_view.dart';
 
 class Home extends StatelessWidget {
-   Home({super.key});
-
-
-
+  Home({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +25,7 @@ class Home extends StatelessWidget {
                 ? Colors.white
                 : Colors.transparent,
             onPressed: () {
-               
-                select.deleteImages();
-              
+              select.deleteImages();
             },
             icon: Icon(Icons.delete),
           )
@@ -41,22 +40,34 @@ class Home extends StatelessWidget {
       floatingActionButtonLocation: ExpandableFab.location,
       floatingActionButton: const ExpandedFabButton(),
 
-
 //      Reduced the use of SetState by using Obx
 
+      body: 
+        StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('singhalsaransh40@gmail.com').doc("pic").collection("adding pic").snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return Center(child: Text('Something went wrong'));
+          }
 
-        body: Obx(()=>GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2, // number of columns
-      ),
-     itemCount: image.images.length,
-      itemBuilder: (context, index) {
-        return FileView(image: image.images[index],
+          final data = snapshot.requireData;
+
+          return 
+         GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, // number of columns
+            ),
+            itemCount: data.size,
+            itemBuilder: (context, index) {
+              
+              return FileView(
+                image: data.docs[index]["image"],
               );
-            }
-          ),
-        ),
-      );
-
+            });
+  }),
+    );
   }
 }

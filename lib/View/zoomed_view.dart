@@ -8,7 +8,7 @@ import 'package:pazy/Model/logs_data.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ZoomedView extends StatelessWidget {
-  final XFile image;
+  final String image;
   const ZoomedView({super.key, required this.image});
 
   @override
@@ -16,11 +16,11 @@ class ZoomedView extends StatelessWidget {
 
     
     return Scaffold(
-      appBar: AppBar(title: Text(image.path, style: TextStyle(fontSize: 15),)),
+      appBar: AppBar(title: Text("Image", style: TextStyle(fontSize: 15),)),
       body: Column(
         children: [
           Expanded(
-            child: Image.file(File(image.path)),
+            child: Image.network(image),
           ),
           Padding(
             padding: const EdgeInsets.all(20),
@@ -29,7 +29,7 @@ class ZoomedView extends StatelessWidget {
               
               children: [
                 IconButton(onPressed: ()async{
-                  final result = await Share.shareXFiles([image]);
+                  final result = await Share.shareUri(Uri.http(image));
 
                   if (result.status == ShareResultStatus.success) {
                         print('Shared!');

@@ -5,22 +5,23 @@ import 'package:image_picker/image_picker.dart';
 
 class LogTabs extends StatelessWidget {
   final String title;
-  final XFile image;
+  final String image;
   LogTabs({super.key, required this.title, required this.image});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(border: Border.all()),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(title),
+          Text("Viewed at $title"),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.file(
-                File(image.path),
+              child: Image.network(
+                image,
                 height: 80,
                 width: 80,
                 fit: BoxFit.fill,
@@ -29,7 +30,6 @@ class LogTabs extends StatelessWidget {
           )
         ],
       ),
-      decoration: BoxDecoration(border: Border.all()),
     );
   }
 }
