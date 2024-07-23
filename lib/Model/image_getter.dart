@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
@@ -16,12 +15,10 @@ class ImageGetter extends GetxController {
   LogsData logs = Get.put(LogsData());
   ImageData data = Get.put(ImageData());
 
-  
-
   Future getImageGallery() async {
     images.value = await picker.pickMultiImage();
 
-    for (XFile element in images)  {
+    for (XFile element in images) {
       List<String> metaData = await _uploadImageToFirebase(element);
       String url = metaData[0];
       var size = metaData[1];
@@ -31,7 +28,7 @@ class ImageGetter extends GetxController {
     print(images);
   }
 
-  Future<List<String>> _uploadImageToFirebase(XFile image) async  {
+  Future<List<String>> _uploadImageToFirebase(XFile image) async {
     final FirebaseStorage _storage = FirebaseStorage.instance;
     final String fileName =
         'images/${DateTime.now().millisecondsSinceEpoch}.jpg';
@@ -40,15 +37,20 @@ class ImageGetter extends GetxController {
 
     final TaskSnapshot snapshot = await task.whenComplete(() => null);
     final String downloadUrl = await snapshot.ref.getDownloadURL();
-     var size = await snapshot.ref.getMetadata();
-     
+    var size = await snapshot.ref.getMetadata();
+
     // Add the download URL to Firestore
-    return[downloadUrl, size.toString()];
-    
+    return [downloadUrl, size.size.toString()];
   }
 
   Future getImageCamera() async {
     final XFile? camImage = await picker.pickImage(source: ImageSource.camera);
+    for (XFile element in images) {
+      List<String> metaData = await _uploadImageToFirebase(element);
+      String url = metaData[0];
+      var size = metaData[1];
+      await data.addData(url, size);
+    }
 
     print(camImage);
   }

@@ -16,6 +16,7 @@ class ViewedImage extends StatelessWidget {
             .collection('singhalsaransh40@gmail.com')
             .doc("logs")
             .collection("view log")
+            .orderBy("created at", descending: true)
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -31,7 +32,7 @@ class ViewedImage extends StatelessWidget {
             itemCount: data.size,
             itemBuilder: (context, index) {
               return LogTabs(
-                  title: "${   DateFormat("yyyy-MM-dd HH:mm:ss").format((data.docs[index]["created at"] as Timestamp).toDate())}",
+                  title: DateFormat("yyyy-MM-dd HH:mm:ss").format((data.docs[index]["created at"] as Timestamp).toDate()),
                   image: data.docs[index]["image"]);
             },
           );

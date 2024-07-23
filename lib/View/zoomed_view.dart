@@ -1,26 +1,23 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:get/get_core/get_core.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:pazy/Model/logs_data.dart';
+import 'package:get/get.dart';
+import 'package:pazy/Model/Firebase/image_data.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ZoomedView extends StatelessWidget {
-  final String image;
-  const ZoomedView({super.key, required this.image});
+  final String image,docId;
+  const ZoomedView({super.key, required this.image, required this.docId});
 
   @override
   Widget build(BuildContext context) {
-
+ImageData data = Get.put(ImageData());
     
     return Scaffold(
-      appBar: AppBar(title: Text("Image", style: TextStyle(fontSize: 15),)),
+      appBar: AppBar(title: const Text("Image", style: TextStyle(fontSize: 15),)),
       body: Column(
         children: [
           Expanded(
-            child: Image.network(image),
+            child: Image.network(image, fit: BoxFit.fill,),
           ),
           Padding(
             padding: const EdgeInsets.all(20),
@@ -36,8 +33,12 @@ class ZoomedView extends StatelessWidget {
 
                       }
 
-                }, icon: Icon(Icons.share, size: 35,)),
-                  IconButton(onPressed: (){}, icon: Icon(Icons.info,size: 35))
+                }, icon: const Icon(Icons.share, size: 35,)),
+                  IconButton(onPressed: (){}, icon: const Icon(Icons.info,size: 35)),
+                  IconButton(onPressed: () async {
+                    await data.deleteData(docId);
+                    Get.back();
+                  }, icon: const Icon(Icons.delete, size: 35,))
               ],
             ),
           )

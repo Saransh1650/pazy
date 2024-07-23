@@ -31,7 +31,7 @@ class Home extends StatelessWidget {
           )
         ],
         title: const Text(
-          'PAZY',
+          '',
           style: TextStyle(
               fontWeight: FontWeight.bold, color: Colors.white, fontSize: 28),
         ),
@@ -44,7 +44,7 @@ class Home extends StatelessWidget {
 
       body: 
         StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('singhalsaransh40@gmail.com').doc("pic").collection("adding pic").snapshots(),
+        stream: FirebaseFirestore.instance.collection('singhalsaransh40@gmail.com').doc("pic").collection("adding pic").orderBy("created at",descending: true).snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -65,6 +65,7 @@ class Home extends StatelessWidget {
               
               return FileView(
                 image: data.docs[index]["image"],
+                docId: data.docs[index].id,
               );
             });
   }),

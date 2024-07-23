@@ -10,8 +10,9 @@ import 'package:pazy/View/zoomed_view.dart';
 import 'package:intl/intl.dart';
 
 class FileView extends StatefulWidget {
-  final String image;
-  FileView({super.key, required this.image});
+
+  final String image, docId;
+  FileView({super.key, required this.image, required this.docId});
 
   @override
   State<FileView> createState() => _FileViewState();
@@ -29,7 +30,7 @@ class _FileViewState extends State<FileView> {
           select.selectedImages.remove(widget.image);}
 
           else{
-            Get.to(()=>ZoomedView(image: widget.image,), popGesture: true, transition: Transition.zoom);
+            Get.to(()=>ZoomedView(image: widget.image,docId: widget.docId,), popGesture: true, transition: Transition.zoom);
             logs.viewLog(widget.image);
            // logs.logMap["Viewed at ${DateFormat.yMd().add_Hms().format(DateTime.now())}"] = widget.image;
 
@@ -56,7 +57,7 @@ class _FileViewState extends State<FileView> {
                 CircularProgressIndicator(value: downloadProgress.progress),
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),   
-         // Image.network(widget.image, fit: BoxFit.fill, width: double.infinity, height: double.infinity,),
+        
           Positioned(child: Icon(Icons.check_circle, size: 30, color: select.isSelected ? Colors.black : Colors.transparent,))
         ],
       ),

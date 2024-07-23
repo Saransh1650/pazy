@@ -1,10 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class NewLogTab extends StatelessWidget {
-  final String size, createdAt; final XFile image;
+  final String size, createdAt; final String image;
   const NewLogTab({super.key, required this.size, required this.createdAt, required this.image});
 
   @override
@@ -22,8 +19,8 @@ class NewLogTab extends StatelessWidget {
                children: [Text("Size : "+size), Text("Added at : "+createdAt)],
               ),
       
-              Image.file(
-                File(image.path),
+              Image.network(
+                image,
                 fit: BoxFit.cover,
                 height: 100,
               ),
