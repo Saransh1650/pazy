@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:pazy/Model/image_getter.dart';
 
 class NewLogTab extends StatelessWidget {
-  final String size, createdAt; final String image;
-  const NewLogTab({super.key, required this.size, required this.createdAt, required this.image});
-
+  final String createdAt; final String image; final int  size;
+   NewLogTab({super.key, required this.size, required this.createdAt, required this.image});
+ImageGetter decryptedImage = Get.put(ImageGetter());
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,11 +19,11 @@ class NewLogTab extends StatelessWidget {
               children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-               children: [Text("Size : "+size), Text("Added at : "+createdAt)],
+               children: [Text("Size : ${(size / (1024 * 1024)).toStringAsFixed(2)} MB"), Text("Added at : "+createdAt)],
               ),
       
-              Image.network(
-                image,
+              Image.file(
+                decryptedImage.getDecryptedPath(image),
                 fit: BoxFit.cover,
                 height: 100,
               ),

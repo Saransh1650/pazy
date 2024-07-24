@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pazy/Model/encryption/encryption.dart';
 import 'package:pazy/Model/image_getter.dart';
 import 'package:pazy/Model/image_selector.dart';
 import 'package:pazy/View/expanded_fab.dart';
@@ -26,6 +27,7 @@ class Home extends StatelessWidget {
                 : Colors.transparent,
             onPressed: () {
               select.deleteImages();
+              image.onInit();
             },
             icon: Icon(Icons.delete),
           )
@@ -64,7 +66,8 @@ class Home extends StatelessWidget {
             itemBuilder: (context, index) {
               
               return FileView(
-                image: data.docs[index]["image"],
+
+                image:  data.docs[index]["image"] ,
                 docId: data.docs[index].id,
               );
             });

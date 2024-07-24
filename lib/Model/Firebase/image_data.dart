@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 class ImageData extends GetxController {
   var db = FirebaseFirestore.instance;
 
-  Future addData(String url, String size) async {
+  Future addData(String url, int size) async {
     await db
         .collection("singhalsaransh40@gmail.com")
         .doc("pic")

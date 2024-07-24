@@ -1,7 +1,11 @@
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pazy/Model/Firebase/image_data.dart';
+import 'package:pazy/Model/image_getter.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ZoomedView extends StatelessWidget {
@@ -11,13 +15,13 @@ class ZoomedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 ImageData data = Get.put(ImageData());
-    
+  ImageGetter decryptedImage = Get.put(ImageGetter());  
     return Scaffold(
       appBar: AppBar(title: const Text("Image", style: TextStyle(fontSize: 15),)),
       body: Column(
         children: [
           Expanded(
-            child: Image.network(image, fit: BoxFit.fill,),
+            child: Image.file(decryptedImage.getDecryptedPath(image), fit: BoxFit.fill,),
           ),
           Padding(
             padding: const EdgeInsets.all(20),
@@ -26,7 +30,7 @@ ImageData data = Get.put(ImageData());
               
               children: [
                 IconButton(onPressed: ()async{
-                  final result = await Share.shareUri(Uri.http(image));
+                  final result = await Share.shareXFiles([XFile(decryptedImage.getDecryptedPath(image).path)]);
 
                   if (result.status == ShareResultStatus.success) {
                         print('Shared!');

@@ -32,7 +32,7 @@ class NewAddedImageLog extends StatelessWidget {
                   createdAt:
                       DateFormat("yyyy-MM-dd HH:mm:ss").format((data.docs[index]["created at"] as Timestamp).toDate()),
                   size:
-                      "${data.docs[index]["size"]}MB",
+                      data.docs[index]["size"],
                   image: data.docs[index]["image"]);
             },
           );
