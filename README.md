@@ -21,6 +21,12 @@
  <img src="https://github.com/user-attachments/assets/68166cd9-ffcd-4393-9cb0-5cf93e8e020a" width="270" style="padding-right: 200px;"/>
 
 
+## Android Version of app
+
+Note : The blank screen in the begining was for fingerprint authentication, but android will not screen record it.
+
+https://github.com/user-attachments/assets/c12970b8-f082-48c7-9891-cea7179e4412
+
 
 
    
