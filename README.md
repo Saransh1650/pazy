@@ -1,7 +1,7 @@
 # pazy
 
 
-##  Integrate biometric authentication options (Face or Fingerprint) for user access.
+##  Integrate biometric authentication options (Face or Fingerprint) for user access and Add photos from the device storage
 <img src="https://github.com/user-attachments/assets/09f3c81e-2877-4320-ad14-c531e94b3668" width="270" style="padding-right: 200px;"/>
 
 
