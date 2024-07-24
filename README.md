@@ -56,7 +56,8 @@ It is used to keep the logs and save the timestamp of viewing images
 
    ## Note
 
- - [x]  During development i have not set the firebase to work different for each person, this is a demo application hence only a single dataset is used for all demos.
+ - [ ]  During development i have not set the firebase to work different for each person, this is a demo application hence only a single dataset is used for all demos.
 
-- [x] Encryted files are stored in the device itself, while saving the encrypted files on firebase, that data got currupted multiple times. hence path of the saved files are stored in databse.
+- [ ] Encryted files are stored in the device itself, while saving the encrypted files on firebase, that data got currupted multiple times. hence path of the saved files are stored in databse.
+- [ ] I have not seperately implemented the Pin authentication, bacuase app is automatically authorized via biometrics and FaceID, but I can demonstate it if needed.
 
