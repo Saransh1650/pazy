@@ -28,6 +28,35 @@ Note : The blank screen in the begining was for fingerprint authentication, but 
 https://github.com/user-attachments/assets/c12970b8-f082-48c7-9891-cea7179e4412
 
 
+# Liberaries Used : 
 
-   
+  ### aes_crypt_null_safe: ^3.0.0
+  This liberary is used for the encryption purpose, it encrypted a file and generates a .aes file which is then converted back into normal file
+  
+  
+  
+  
+  ### firebase_core: ^3.2.0
+  ### firebase_storage: ^12.1.1
+It is used to keep the logs and save the timestamp of viewing images
+  
+ 
+  
+  
+  ### get: ^4.6.6
+  It is a state management package which keep the app running smooth
+  
+  ### image_picker: ^1.1.2
+  This package is used to pick images from the app storage 
+  
+  ### local_auth: ^2.2.0
+  This package is used to provide Biometric Authentication and FaceID
+  ### share_plus: ^9.0.0
+   It is used to share the media externally as a file format 
+
+   ## Note
+
+ - [x]  During development i have not set the firebase to work different for each person, this is a demo application hence only a single dataset is used for all demos.
+
+- [x] Encryted files are stored in the device itself, while saving the encrypted files on firebase, that data got currupted multiple times. hence path of the saved files are stored in databse.
 
