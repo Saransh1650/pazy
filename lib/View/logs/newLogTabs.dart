@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:pazy/Model/image_getter.dart';
@@ -12,6 +13,11 @@ ImageGetter decryptedImage = Get.put(ImageGetter());
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          color: Colors.grey[200],
+        ),
+        padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
             Row(
@@ -22,10 +28,14 @@ ImageGetter decryptedImage = Get.put(ImageGetter());
                children: [Text("Size : ${(size / (1024 * 1024)).toStringAsFixed(2)} MB"), Text("Added at : "+createdAt)],
               ),
       
-              Image.file(
-                decryptedImage.getDecryptedPath(image),
-                fit: BoxFit.cover,
-                height: 100,
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                child: Image.file(
+                  decryptedImage.getDecryptedPath(image),
+                  fit: BoxFit.cover,
+                  height: 100,
+                  width: 100,
+                ),
               ),
             ],)
           ],

@@ -33,7 +33,7 @@ class Home extends StatelessWidget {
           )
         ],
         title: const Text(
-          '',
+          'PAZY',
           style: TextStyle(
               fontWeight: FontWeight.bold, color: Colors.white, fontSize: 28),
         ),

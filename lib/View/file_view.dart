@@ -16,39 +16,41 @@ class FileView extends StatefulWidget {
   State<FileView> createState() => _FileViewState();
 }
 
-
-
 class _FileViewState extends State<FileView> {
+  ImageGetter path = Get.put(ImageGetter());
 
-
-
-
-ImageGetter path = Get.put(ImageGetter());
-  
   @override
   Widget build(BuildContext context) {
-    
     ViewLog logs = Get.put(ViewLog());
-    return InkWell(
-      onTap: () {
-        setState(() {
-          
-            Get.to(
-                () => ZoomedView(
-                      image: widget.image,
-                      docId: widget.docId,
-                    ),
-                popGesture: true,
-                transition: Transition.zoom);
-            logs.viewLog(widget.image);
-         
-          
-        });
-      },
-      
-      child: 
-            Image.file(path.getDecryptedPath(widget.image), fit: BoxFit.fill,) // Display image
-          
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: InkWell(
+          onTap: () {
+            setState(() {
+              Get.to(
+                  () => ZoomedView(
+                        image: widget.image,
+                        docId: widget.docId,
+                      ),
+                  popGesture: true,
+                  transition: Transition.zoom);
+              logs.viewLog(widget.image);
+            });
+          },
+          child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              child: Container(
+                  decoration: BoxDecoration(
+                    
+                      border: Border.all(),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(0))),
+                  child: Image.file(
+                    path.getDecryptedPath(widget.image),
+                    fit: BoxFit.fill,
+                  ))) // Display image
+
+          ),
     );
   }
 }
